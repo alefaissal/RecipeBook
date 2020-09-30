@@ -83,6 +83,7 @@ class RecipesTableViewController: UITableViewController {
         let recipeObject = recipesArray[indexPath.row]
         
         cell.textLabel?.text = recipeObject.title
+        cell.detailTextLabel?.text = recipeObject.yield
 
         return cell
     }

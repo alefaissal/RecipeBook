@@ -104,7 +104,13 @@ class RecipesManager: NSObject {
         let realm = try! Realm()
         let data = realm.objects(Category.self)
         return data.map({$0})
-
+    }
+    
+    //fixed
+    func getAllRecipes() -> [Recipe]? {
+        let realm = try! Realm()
+        let data = realm.objects(Recipe.self)
+        return data.map({$0})
     }
     
     //fixed
@@ -113,11 +119,7 @@ class RecipesManager: NSObject {
         return recipes.map({$0})
     }
     
-    func getAllRecipesFromCategory(categoryTitle: String) -> Results<Recipe>{
-        let realm = try! Realm()
-        let data: Results<Recipe> = realm.objects(Recipe.self)
-        return data
-    }
+    
     
     //fixed
     func getAllShoppingList() ->[ShoppingList]?{
@@ -167,17 +169,14 @@ class RecipesManager: NSObject {
         
     }
     
-    
+    //fixed
+    //[c] is to ignore case senibility
     func searchAll(searchWord: String) -> [Recipe]? {
         let realm = try! Realm()
         let data = realm.objects(Recipe.self)
-        let results = data.filter("title CONTAINS '\(searchWord)' OR yield CONTAINS '\(searchWord)' OR ingredients CONTAINS '\(searchWord)' OR preparation CONTAINS '\(searchWord)'")
+        let results = data.filter("title CONTAINS[c]'\(searchWord)' OR yield CONTAINS[c] '\(searchWord)' OR ingredients CONTAINS[c] '\(searchWord)' OR preparation CONTAINS[c] '\(searchWord)'")
         let recipes = Array(results)
         return recipes
     }
-    
-    
- 
-
 }
 
