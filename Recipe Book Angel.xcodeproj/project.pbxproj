@@ -24,24 +24,24 @@
 		AC286FCE251EA343007D18EA /* FavNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286FCD251EA343007D18EA /* FavNavigationController.swift */; };
 		AC286FD1251EA369007D18EA /* SearchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286FD0251EA369007D18EA /* SearchNavigationController.swift */; };
 		AC286FD4251EA38D007D18EA /* ShopNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286FD3251EA38D007D18EA /* ShopNavigationController.swift */; };
-		AC286FD7251EA6F8007D18EA /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC286FA1251E7038007D18EA /* Realm.framework */; };
-		AC286FD8251EA6F8007D18EA /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC286FA1251E7038007D18EA /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AC286FDA251EA6F9007D18EA /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC286FA0251E7036007D18EA /* RealmSwift.framework */; };
-		AC286FDB251EA6F9007D18EA /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC286FA0251E7036007D18EA /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AC286FDD251EACF8007D18EA /* RecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286FDC251EACF8007D18EA /* RecipesTableViewController.swift */; };
 		AC2B52F92523CB7A008BD535 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B52F82523CB79008BD535 /* RecipeViewController.swift */; };
 		AC2B52FB2523D06D008BD535 /* CreateRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B52FA2523D06D008BD535 /* CreateRecipeViewController.swift */; };
+		AC3B49FB2523EB5B0052B063 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49F92523EB5B0052B063 /* Realm.framework */; };
+		AC3B49FC2523EB5B0052B063 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49F92523EB5B0052B063 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC3B49FD2523EB5B0052B063 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		AC3B49FE2523EB5B0052B063 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AC286FD9251EA6F8007D18EA /* Embed Frameworks */ = {
+		AC3B49FF2523EB5B0052B063 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AC286FDB251EA6F9007D18EA /* RealmSwift.framework in Embed Frameworks */,
-				AC286FD8251EA6F8007D18EA /* Realm.framework in Embed Frameworks */,
+				AC3B49FE2523EB5B0052B063 /* RealmSwift.framework in Embed Frameworks */,
+				AC3B49FC2523EB5B0052B063 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,8 +57,6 @@
 		AC286F94251E6FBD007D18EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC286F97251E6FBD007D18EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC286F99251E6FBD007D18EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC286FA0251E7036007D18EA /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		AC286FA1251E7038007D18EA /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		AC286FA5251E7069007D18EA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AC286FA8251E7262007D18EA /* RecipesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesManager.swift; sourceTree = "<group>"; };
 		AC286FB7251EA033007D18EA /* CategTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategTableViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +71,8 @@
 		AC286FDC251EACF8007D18EA /* RecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableViewController.swift; sourceTree = "<group>"; };
 		AC2B52F82523CB79008BD535 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		AC2B52FA2523D06D008BD535 /* CreateRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeViewController.swift; sourceTree = "<group>"; };
+		AC3B49F92523EB5B0052B063 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Frameworks/Realm/Realm.framework; sourceTree = "<group>"; };
+		AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Frameworks/Realm/RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC286FDA251EA6F9007D18EA /* RealmSwift.framework in Frameworks */,
-				AC286FD7251EA6F8007D18EA /* Realm.framework in Frameworks */,
+				AC3B49FD2523EB5B0052B063 /* RealmSwift.framework in Frameworks */,
+				AC3B49FB2523EB5B0052B063 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,10 +91,9 @@
 		AC286F7F251E6FBC007D18EA = {
 			isa = PBXGroup;
 			children = (
-				AC286FA1251E7038007D18EA /* Realm.framework */,
-				AC286FA0251E7036007D18EA /* RealmSwift.framework */,
 				AC286F8A251E6FBC007D18EA /* Recipe Book Angel */,
 				AC286F89251E6FBC007D18EA /* Products */,
+				AC3B49F82523EB5A0052B063 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +133,15 @@
 			path = "Recipe Book Angel";
 			sourceTree = "<group>";
 		};
+		AC3B49F82523EB5A0052B063 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC3B49F92523EB5B0052B063 /* Realm.framework */,
+				AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,7 +152,7 @@
 				AC286F84251E6FBC007D18EA /* Sources */,
 				AC286F85251E6FBC007D18EA /* Frameworks */,
 				AC286F86251E6FBC007D18EA /* Resources */,
-				AC286FD9251EA6F8007D18EA /* Embed Frameworks */,
+				AC3B49FF2523EB5B0052B063 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,6 +313,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -359,6 +368,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -368,6 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WYSZ8LM3RP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -375,6 +386,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Recipe Book Angel/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WYSZ8LM3RP;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -398,6 +411,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Recipe Book Angel/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
