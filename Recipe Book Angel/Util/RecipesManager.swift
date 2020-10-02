@@ -43,8 +43,18 @@ class RecipesManager: NSObject {
         } catch  {
             print(error.localizedDescription)
         }
-        
-        
+    }
+    
+    func AddFullRecipeToCategory(category: Category, recipe: Recipe){
+        let realm = try! Realm()
+        recipe.creationDate = Date()
+        do {
+            try realm.write {
+                category.recipes.append(recipe)
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
     }
     
     func addItemtoShoppingList(title: String) {
@@ -53,7 +63,7 @@ class RecipesManager: NSObject {
         item.title = title
         item.creationDate = Date()
         do {
-            try! realm.write {
+            try realm.write {
                 realm.add(item)
             }
         } catch  {
@@ -113,6 +123,7 @@ class RecipesManager: NSObject {
         return data.map({$0})
     }
     
+    
     //fixed
     func getAllRecipesByCategory(category: Category) -> [Recipe]? {
         let recipes = category.recipes
@@ -128,21 +139,57 @@ class RecipesManager: NSObject {
         return items.map({$0})
     }
     
+    func getAllShoppingListByChecked(isChecked: Bool) ->[ShoppingList]?{
+        let realm = try! Realm()
+        let items = realm.objects(ShoppingList.self)
+        let results = items.filter("isChecked = \(isChecked) ")
+        let recipes = Array(results)
+        return recipes 
+    }
+    
+    
     
     //fixed
-    func updateRecipe(recipe: Recipe, yield:String, ingredients:String, preparation: String) {
-        
+    func updateRecipe(recipe: Recipe, yield:String, ingredients:String, preparation: String, equipments: String, image: String) {
         let realm = try! Realm()
         do {
             try realm.write{
                 recipe.yield = yield
                 recipe.ingredients = ingredients
                 recipe.preparation = preparation
+                recipe.equipments = equipments
+                recipe.updateDate = Date()
+                recipe.image = image
             }
         } catch  {
             print(error.localizedDescription)
         }
-        
+    }
+    
+    //testing
+    func updateRecipeDate(recipe: Recipe, date: Date) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                recipe.creationDate = date
+                recipe.updateDate = Date()
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateRecipe(recipe: Recipe){
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                let cat = getCategoryByTitle(title: recipe.category.first!.title)
+                realm.delete(recipe)
+                cat.recipes.append(recipe)
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
     }
     
 //    fixed
@@ -151,6 +198,18 @@ class RecipesManager: NSObject {
         do {
             try realm.write{
                 recipe.isFavorite = favorite
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    func updateShopListCheck(item: ShoppingList, checked: Bool) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                item.isChecked = checked
             }
         } catch  {
             print(error.localizedDescription)
@@ -174,9 +233,24 @@ class RecipesManager: NSObject {
     func searchAll(searchWord: String) -> [Recipe]? {
         let realm = try! Realm()
         let data = realm.objects(Recipe.self)
-        let results = data.filter("title CONTAINS[c]'\(searchWord)' OR yield CONTAINS[c] '\(searchWord)' OR ingredients CONTAINS[c] '\(searchWord)' OR preparation CONTAINS[c] '\(searchWord)'")
+        let results = data.filter("title CONTAINS[c]'\(searchWord)' OR yield CONTAINS[c] '\(searchWord)' OR ingredients CONTAINS[c] '\(searchWord)' OR preparation CONTAINS[c] '\(searchWord)' OR equipments CONTAINS[c] '\(searchWord)'")
         let recipes = Array(results)
         return recipes
+    }
+    
+    func getCategoryByTitle(title: String) -> Category {
+        let realm = try! Realm()
+        let data = realm.objects(Category.self)
+        let results = data.filter("title CONTAINS[c]'\(title)'")
+        let category = Array(results)
+        return category.first!
+    }
+    
+    func dateFormater( date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let newDate = String(formatter.string(from:date))
+        return newDate
     }
 }
 

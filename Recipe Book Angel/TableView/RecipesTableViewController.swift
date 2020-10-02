@@ -82,8 +82,11 @@ class RecipesTableViewController: UITableViewController {
         
         let recipeObject = recipesArray[indexPath.row]
         
+        let date = RecipesManager.shared.dateFormater(date: recipeObject.creationDate)
+        let updated = RecipesManager.shared.dateFormater(date: recipeObject.updateDate)
+        
         cell.textLabel?.text = recipeObject.title
-        cell.detailTextLabel?.text = recipeObject.yield
+        cell.detailTextLabel?.text = "Yield: \(recipeObject.yield!), updated: \(updated)"
 
         return cell
     }
@@ -116,18 +119,21 @@ class RecipesTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let recipeObjectToDelete = recipesArray[indexPath.row]
-            RecipesManager.shared.deleteRecipe(recipe: recipeObjectToDelete)
-            recipesArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-        }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {        
+        let addAlert = UIAlertController(title: "Delete Recipe", message: "If you delete, all data in this recipe will be lost.", preferredStyle: .alert)
+        
+        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
+            if editingStyle == .delete {
+                let recipeObjectToDelete = self.recipesArray[indexPath.row]
+                RecipesManager.shared.deleteRecipe(recipe: recipeObjectToDelete)
+                self.recipesArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        } ))
+        self.present(addAlert, animated: true, completion: nil)
     }
     
     
-    
-    
-
 }

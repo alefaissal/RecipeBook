@@ -75,8 +75,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             recipe = recipesArray[indexPath.row]
         }
         
+        let date = RecipesManager.shared.dateFormater(date: recipe!.creationDate)
+        let updated = RecipesManager.shared.dateFormater(date: recipe!.updateDate)
+        
         cell.textLabel?.text = recipe!.title
-        cell.detailTextLabel?.text = recipe!.yield
+        cell.detailTextLabel?.text = "Yield: \(recipe!.yield!), updated: \(updated)"
         
         return cell
     }

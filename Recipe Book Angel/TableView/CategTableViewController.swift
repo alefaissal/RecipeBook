@@ -25,7 +25,10 @@ class CategTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
     
     func loadData() {
         if let categories = RecipesManager.shared.getAllCategories() {
@@ -75,45 +78,10 @@ class CategTableViewController: UITableViewController {
         let category = categoriesArray[indexPath.row]
         
         cell.textLabel?.text = category.title
+        cell.detailTextLabel?.text = "Recipes: \(category.recipes.count)"
 
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
@@ -135,13 +103,23 @@ class CategTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let categoryObjectToDelete = categoriesArray[indexPath.row]
-            RecipesManager.shared.deleteCategory(category: categoryObjectToDelete)
-            categoriesArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        let addAlert = UIAlertController(title: "Delete Category", message: "If you delete, all data in this category will be lost. \n Including all recipes inside this category", preferredStyle: .alert)
+        
+        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
+            if editingStyle == .delete {
+                let categoryObjectToDelete = self.categoriesArray[indexPath.row]
+                RecipesManager.shared.deleteCategory(category: categoryObjectToDelete)
+                self.categoriesArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
             
-        }
+        } ))
+        
+        self.present(addAlert, animated: true, completion: nil)
+        
     }
     
 

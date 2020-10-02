@@ -12,14 +12,16 @@ import RealmSwift
 
 class Recipe: Object {
     @objc dynamic var creationDate = Date()
+    @objc dynamic var updateDate = Date()
     @objc dynamic var title: String? = ""
     @objc dynamic var yield: String? = ""
     @objc dynamic var ingredients: String? = ""
     @objc dynamic var preparation: String? = ""
-    //@objc dynamic var photo: ? = ""
+    @objc dynamic var equipments: String? = ""
+    @objc dynamic var image: String? = ""
     @objc dynamic var isFavorite: Bool = false
     
-    let category = LinkingObjects(fromType: Category.self, property: "recipes")
+    var category = LinkingObjects(fromType: Category.self, property: "recipes")
 }
 
 class Category: Object {
@@ -32,6 +34,7 @@ class Category: Object {
 class ShoppingList: Object {
     @objc dynamic var title: String? = ""
     @objc dynamic var creationDate = Date()
+    @objc dynamic var isChecked: Bool = false
     
 }
 

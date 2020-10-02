@@ -26,22 +26,22 @@
 		AC286FD4251EA38D007D18EA /* ShopNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286FD3251EA38D007D18EA /* ShopNavigationController.swift */; };
 		AC286FDD251EACF8007D18EA /* RecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286FDC251EACF8007D18EA /* RecipesTableViewController.swift */; };
 		AC2B52F92523CB7A008BD535 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B52F82523CB79008BD535 /* RecipeViewController.swift */; };
-		AC2B52FB2523D06D008BD535 /* CreateRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B52FA2523D06D008BD535 /* CreateRecipeViewController.swift */; };
-		AC3B49FB2523EB5B0052B063 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49F92523EB5B0052B063 /* Realm.framework */; };
-		AC3B49FC2523EB5B0052B063 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49F92523EB5B0052B063 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AC3B49FD2523EB5B0052B063 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		AC3B49FE2523EB5B0052B063 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC6093FE2525323C00F71E2E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6093FC2525323C00F71E2E /* Realm.framework */; };
+		AC6093FF2525323C00F71E2E /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC6093FC2525323C00F71E2E /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC6094002525323C00F71E2E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6093FD2525323C00F71E2E /* RealmSwift.framework */; };
+		AC6094012525323C00F71E2E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC6093FD2525323C00F71E2E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AC8A51662526776E00ED8D1C /* ShopViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A51652526776E00ED8D1C /* ShopViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AC3B49FF2523EB5B0052B063 /* Embed Frameworks */ = {
+		AC6094022525323C00F71E2E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AC3B49FE2523EB5B0052B063 /* RealmSwift.framework in Embed Frameworks */,
-				AC3B49FC2523EB5B0052B063 /* Realm.framework in Embed Frameworks */,
+				AC6094012525323C00F71E2E /* RealmSwift.framework in Embed Frameworks */,
+				AC6093FF2525323C00F71E2E /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,9 +70,9 @@
 		AC286FD3251EA38D007D18EA /* ShopNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopNavigationController.swift; sourceTree = "<group>"; };
 		AC286FDC251EACF8007D18EA /* RecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableViewController.swift; sourceTree = "<group>"; };
 		AC2B52F82523CB79008BD535 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
-		AC2B52FA2523D06D008BD535 /* CreateRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeViewController.swift; sourceTree = "<group>"; };
-		AC3B49F92523EB5B0052B063 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Frameworks/Realm/Realm.framework; sourceTree = "<group>"; };
-		AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Frameworks/Realm/RealmSwift.framework; sourceTree = "<group>"; };
+		AC6093FC2525323C00F71E2E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Frameworks/Realm/Realm.framework; sourceTree = "<group>"; };
+		AC6093FD2525323C00F71E2E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Frameworks/Realm/RealmSwift.framework; sourceTree = "<group>"; };
+		AC8A51652526776E00ED8D1C /* ShopViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC3B49FD2523EB5B0052B063 /* RealmSwift.framework in Frameworks */,
-				AC3B49FB2523EB5B0052B063 /* Realm.framework in Frameworks */,
+				AC6094002525323C00F71E2E /* RealmSwift.framework in Frameworks */,
+				AC6093FE2525323C00F71E2E /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +93,7 @@
 			children = (
 				AC286F8A251E6FBC007D18EA /* Recipe Book Angel */,
 				AC286F89251E6FBC007D18EA /* Products */,
-				AC3B49F82523EB5A0052B063 /* Frameworks */,
+				AC6093FB2525323C00F71E2E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,36 +110,68 @@
 			children = (
 				AC286F8B251E6FBC007D18EA /* AppDelegate.swift */,
 				AC286FA5251E7069007D18EA /* Model.swift */,
-				AC286FA8251E7262007D18EA /* RecipesManager.swift */,
 				AC286F8D251E6FBC007D18EA /* SceneDelegate.swift */,
+				AC286FC3251EA225007D18EA /* TabBarController.swift */,
 				AC286F8F251E6FBC007D18EA /* ViewController.swift */,
 				AC2B52F82523CB79008BD535 /* RecipeViewController.swift */,
-				AC2B52FA2523D06D008BD535 /* CreateRecipeViewController.swift */,
-				AC286FC3251EA225007D18EA /* TabBarController.swift */,
-				AC286FCA251EA323007D18EA /* CatNavigationController.swift */,
-				AC286FCD251EA343007D18EA /* FavNavigationController.swift */,
-				AC286FD0251EA369007D18EA /* SearchNavigationController.swift */,
-				AC286FD3251EA38D007D18EA /* ShopNavigationController.swift */,
-				AC286FB7251EA033007D18EA /* CategTableViewController.swift */,
-				AC286FBA251EA08C007D18EA /* FavTableViewController.swift */,
-				AC286FBD251EA0A7007D18EA /* SearchTableViewController.swift */,
-				AC286FC0251EA0B3007D18EA /* ShopTableViewController.swift */,
-				AC286FDC251EACF8007D18EA /* RecipesTableViewController.swift */,
+				AC8A516025265A4700ED8D1C /* Util */,
+				ACDF17DB2526339100CBB00E /* NavController */,
+				ACDF17DA2526336800CBB00E /* TableView */,
 				AC286F91251E6FBC007D18EA /* Main.storyboard */,
 				AC286F94251E6FBD007D18EA /* Assets.xcassets */,
 				AC286F96251E6FBD007D18EA /* LaunchScreen.storyboard */,
 				AC286F99251E6FBD007D18EA /* Info.plist */,
+				ACDF17DC252639CA00CBB00E /* images */,
 			);
 			path = "Recipe Book Angel";
 			sourceTree = "<group>";
 		};
-		AC3B49F82523EB5A0052B063 /* Frameworks */ = {
+		AC6093FB2525323C00F71E2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AC3B49F92523EB5B0052B063 /* Realm.framework */,
-				AC3B49FA2523EB5B0052B063 /* RealmSwift.framework */,
+				AC6093FC2525323C00F71E2E /* Realm.framework */,
+				AC6093FD2525323C00F71E2E /* RealmSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC8A516025265A4700ED8D1C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				AC286FA8251E7262007D18EA /* RecipesManager.swift */,
+				AC8A51652526776E00ED8D1C /* ShopViewCell.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		ACDF17DA2526336800CBB00E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				AC286FB7251EA033007D18EA /* CategTableViewController.swift */,
+				AC286FDC251EACF8007D18EA /* RecipesTableViewController.swift */,
+				AC286FBA251EA08C007D18EA /* FavTableViewController.swift */,
+				AC286FBD251EA0A7007D18EA /* SearchTableViewController.swift */,
+				AC286FC0251EA0B3007D18EA /* ShopTableViewController.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		ACDF17DB2526339100CBB00E /* NavController */ = {
+			isa = PBXGroup;
+			children = (
+				AC286FCA251EA323007D18EA /* CatNavigationController.swift */,
+				AC286FCD251EA343007D18EA /* FavNavigationController.swift */,
+				AC286FD0251EA369007D18EA /* SearchNavigationController.swift */,
+				AC286FD3251EA38D007D18EA /* ShopNavigationController.swift */,
+			);
+			path = NavController;
+			sourceTree = "<group>";
+		};
+		ACDF17DC252639CA00CBB00E /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +184,7 @@
 				AC286F84251E6FBC007D18EA /* Sources */,
 				AC286F85251E6FBC007D18EA /* Frameworks */,
 				AC286F86251E6FBC007D18EA /* Resources */,
-				AC3B49FF2523EB5B0052B063 /* Embed Frameworks */,
+				AC6094022525323C00F71E2E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,13 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC2B52FB2523D06D008BD535 /* CreateRecipeViewController.swift in Sources */,
 				AC286F90251E6FBC007D18EA /* ViewController.swift in Sources */,
 				AC286F8C251E6FBC007D18EA /* AppDelegate.swift in Sources */,
 				AC286FC1251EA0B3007D18EA /* ShopTableViewController.swift in Sources */,
 				AC286FC4251EA225007D18EA /* TabBarController.swift in Sources */,
 				AC286FDD251EACF8007D18EA /* RecipesTableViewController.swift in Sources */,
 				AC286FBB251EA08C007D18EA /* FavTableViewController.swift in Sources */,
+				AC8A51662526776E00ED8D1C /* ShopViewCell.swift in Sources */,
 				AC286FCE251EA343007D18EA /* FavNavigationController.swift in Sources */,
 				AC286FA9251E7262007D18EA /* RecipesManager.swift in Sources */,
 				AC286FD4251EA38D007D18EA /* ShopNavigationController.swift in Sources */,
