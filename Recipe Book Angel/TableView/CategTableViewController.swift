@@ -79,6 +79,7 @@ class CategTableViewController: UITableViewController {
         
         cell.textLabel?.text = category.title
         cell.detailTextLabel?.text = "Recipes: \(category.recipes.count)"
+        
 
         return cell
     }

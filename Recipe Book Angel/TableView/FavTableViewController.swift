@@ -47,19 +47,17 @@ class FavTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath)
         
-        let recipe = recipesArray[indexPath.row]
-        let date = RecipesManager.shared.dateFormater(date: recipe.creationDate)
-        let updated = RecipesManager.shared.dateFormater(date: recipe.updateDate)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! RecipeViewCell
+        let recipe: Recipe? = recipesArray[indexPath.row]
+        let updated = RecipesManager.shared.dateFormater(date: recipe!.updateDate)
         
-        cell.textLabel?.text = recipe.title
-        cell.detailTextLabel?.text = "Yield: \(recipe.yield!), updated: \(updated)"
-        
+        cell.favoritesTitleLabel.text = recipe!.title
+        cell.favoritesSubtitleLabel.text = "Yield: \(recipe!.yield ?? ""), updated: \(updated)"
+        cell.favoritesImageView.image = recipe?.image != nil && recipe!.image != "" ? RecipesManager.shared.getSavedImage(named: "\(recipe!.image ?? "")"): UIImage(systemName: "photo")
         
         return cell
     }
-    
     
     // MARK: - Navigation
     
@@ -88,7 +86,10 @@ class FavTableViewController: UITableViewController {
         
     }
     
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+   
     
     
 }

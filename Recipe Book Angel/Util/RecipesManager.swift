@@ -34,6 +34,7 @@ class RecipesManager: NSObject {
     func addRecipeToCategory(category: Category, recipeTitle: String){
         let realm = try! Realm()
         let recipe = Recipe()
+        recipe.id = recipe.incrementID()
         recipe.title = recipeTitle
         recipe.creationDate = Date()
         do {
@@ -251,6 +252,14 @@ class RecipesManager: NSObject {
         formatter.dateFormat = "yyyy/MM/dd"
         let newDate = String(formatter.string(from:date))
         return newDate
+    }
+    
+    
+    func getSavedImage(named: String) -> UIImage? {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("\(named).png").path)
+        }
+        return nil
     }
 }
 

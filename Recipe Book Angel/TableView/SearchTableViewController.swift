@@ -67,7 +67,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! RecipeViewCell
+        
         var recipe: Recipe?
         if isFiltering{
             recipe =  filteredTableData[indexPath.row]
@@ -75,12 +76,13 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             recipe = recipesArray[indexPath.row]
         }
         
-        let date = RecipesManager.shared.dateFormater(date: recipe!.creationDate)
         let updated = RecipesManager.shared.dateFormater(date: recipe!.updateDate)
         
-        cell.textLabel?.text = recipe!.title
-        cell.detailTextLabel?.text = "Yield: \(recipe!.yield!), updated: \(updated)"
-        
+        cell.recipe = recipe
+        cell.searchTitelLabel.text = recipe!.title
+        cell.searchSubTitleLabel.text = "Yield: \(recipe!.yield!), updated: \(updated)"
+        cell.searchImageView.image = recipe?.image != nil && recipe!.image != "" ? RecipesManager.shared.getSavedImage(named: "\(recipe!.image ?? "")"): UIImage(systemName: "photo")
+
         return cell
     }
     
@@ -139,5 +141,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         //to remove search bar when moved to next page
         resultSearchController.isActive = false
     }
+    
+    //Configuring table cell
+    
+   
+    
+    
+    
 
 }

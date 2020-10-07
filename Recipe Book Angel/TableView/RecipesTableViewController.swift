@@ -36,7 +36,9 @@ class RecipesTableViewController: UITableViewController {
         if let category = categoryObject {
             if let recipes = RecipesManager.shared.getAllRecipesByCategory(category: category) {
                 recipesArray = recipes
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -78,15 +80,16 @@ class RecipesTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as! RecipeViewCell
         
         let recipeObject = recipesArray[indexPath.row]
         
-        let date = RecipesManager.shared.dateFormater(date: recipeObject.creationDate)
         let updated = RecipesManager.shared.dateFormater(date: recipeObject.updateDate)
         
-        cell.textLabel?.text = recipeObject.title
-        cell.detailTextLabel?.text = "Yield: \(recipeObject.yield!), updated: \(updated)"
+        cell.recipeTitleLabel.text = recipeObject.title
+        cell.recipeSubTitleLabel.text = "Yield: \(recipeObject.yield!), updated: \(updated)"
+        cell.recipeImageView.image = recipeObject.image != nil && recipeObject.image != "" ? RecipesManager.shared.getSavedImage(named: "\(recipeObject.image ?? "")"): UIImage(systemName: "photo")
+        
 
         return cell
     }

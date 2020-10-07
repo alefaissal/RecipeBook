@@ -21,7 +21,6 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var creationDateTextField: UITextField!
     @IBOutlet weak var addPhotoOutlet: UIButton!
-    
     @IBOutlet weak var favImage: UIButton!
     
     //Added for dropdown menu for categories
@@ -60,7 +59,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         
     }
    
-    //Test doesn't work so far
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         let addAlert = UIAlertController(title: "Information Chaged", message: "Do you want to save before go back, you will lose all info changed if not saved", preferredStyle: .alert)
@@ -107,6 +106,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     }
     
     func configureView(){
+        if let recipe = recipeObject {
         self.navigationItem.title = recipeObject?.title
         categoryTextField?.text = recipeObject?.category.first?.title
         let createdDate = RecipesManager.shared.dateFormater(date: recipeObject?.creationDate ?? Date())
@@ -115,9 +115,9 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         ingredientsTextField?.text = recipeObject?.ingredients != nil ? recipeObject?.ingredients : "Ingredients go here"
         preparationTextField?.text = recipeObject?.preparation != nil ? recipeObject?.preparation : "Preparation goes here"
         equipmentsTextField?.text = recipeObject?.equipments != nil ? recipeObject?.equipments : "Equipments go here"
-        imageView?.image = recipeObject?.image != nil || recipeObject?.image != "" ? getSavedImage(named: "\(recipeObject?.image).png"): UIImage(systemName: "photo")
-        
-        if let recipe = recipeObject {
+            if let image = recipeObject?.image {
+                imageView?.image = recipeObject?.image != nil && recipeObject?.image != "" ? RecipesManager.shared.getSavedImage(named: "\(image)"): UIImage(systemName: "photo")
+            }
             let fav = recipe.isFavorite
             isFav = fav
             let imageConfig = UIImage.SymbolConfiguration(textStyle: .largeTitle)
@@ -141,7 +141,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
                 let recipePrep = recipe.preparation!
                 let recipEquip = recipe.equipments!
                 let recipeFav = recipe.isFavorite
-                let recipeImage = recipe.image == imageName ? recipe.image : imageName
+                let recipeImage = recipe.image
                 RecipesManager.shared.deleteRecipe(recipe: recipe)
                 
                 let newCatTitle = categoryTextField.text
@@ -164,9 +164,9 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
                 let ingredients = ingredientsTextField.text
                 let preparation = preparationTextField.text
                 let equipment = equipmentsTextField.text
-                let image = recipe.image == imageName ? recipe.image : imageName
+                let image = "\(recipe.id)"
                 
-                RecipesManager.shared.updateRecipe(recipe: recipe, yield: yield!, ingredients: ingredients!, preparation: preparation!, equipments: equipment!, image: image ?? "")
+                RecipesManager.shared.updateRecipe(recipe: recipe, yield: yield!, ingredients: ingredients!, preparation: preparation!, equipments: equipment!, image: image)
             }
         }
     }
@@ -214,9 +214,9 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         dismiss(animated: true)
         let img = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         imageView.image = img
-        if let recipe = recipeObject {
-            imageName = "\(recipe.title)\(recipe.ingredients)\(recipe.preparation)"
-        }
+//        if let recipe = recipeObject {
+//            imageName = "\(recipe.id)"
+//        }
         savePhoto(image: imageView.image!)
     }
  
@@ -225,8 +225,8 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         let data = image.jpegData(compressionQuality: 0.75) ?? image.pngData()
         let directory = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask) as [URL]
         do {
-            if let recipe = recipeObject{
-                try data!.write(to: directory![0].appendingPathComponent("\(recipe.image)).png"))
+           if let recipe = recipeObject {
+            try data!.write(to: directory![0].appendingPathComponent("\(recipe.id).png"))
             }
             
         } catch {
@@ -238,10 +238,11 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     func getSavedImage(named: String) -> UIImage? {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
-            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("\(named).png").path)
         }
         return nil
     }
+    
     
     
 }
