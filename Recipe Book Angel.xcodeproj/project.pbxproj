@@ -31,6 +31,7 @@
 		AC6094002525323C00F71E2E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6093FD2525323C00F71E2E /* RealmSwift.framework */; };
 		AC6094012525323C00F71E2E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC6093FD2525323C00F71E2E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AC8A51662526776E00ED8D1C /* ShopViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A51652526776E00ED8D1C /* ShopViewCell.swift */; };
+		AC8A5173252B7F8C00ED8D1C /* RecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A5172252B7F8C00ED8D1C /* RecipeViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +74,7 @@
 		AC6093FC2525323C00F71E2E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../../Frameworks/Realm/Realm.framework; sourceTree = "<group>"; };
 		AC6093FD2525323C00F71E2E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../../Frameworks/Realm/RealmSwift.framework; sourceTree = "<group>"; };
 		AC8A51652526776E00ED8D1C /* ShopViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewCell.swift; sourceTree = "<group>"; };
+		AC8A5172252B7F8C00ED8D1C /* RecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				AC286FA8251E7262007D18EA /* RecipesManager.swift */,
 				AC8A51652526776E00ED8D1C /* ShopViewCell.swift */,
+				AC8A5172252B7F8C00ED8D1C /* RecipeViewCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				AC286FCE251EA343007D18EA /* FavNavigationController.swift in Sources */,
 				AC286FA9251E7262007D18EA /* RecipesManager.swift in Sources */,
 				AC286FD4251EA38D007D18EA /* ShopNavigationController.swift in Sources */,
+				AC8A5173252B7F8C00ED8D1C /* RecipeViewCell.swift in Sources */,
 				AC286F8E251E6FBC007D18EA /* SceneDelegate.swift in Sources */,
 				AC286FB8251EA033007D18EA /* CategTableViewController.swift in Sources */,
 				AC286FA6251E7069007D18EA /* Model.swift in Sources */,
