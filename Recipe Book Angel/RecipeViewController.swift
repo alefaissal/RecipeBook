@@ -23,6 +23,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     @IBOutlet weak var addPhotoOutlet: UIButton!
     @IBOutlet weak var favImage: UIButton!
     
+    
     //Added for dropdown menu for categories
     var pickerViewForCat = UIPickerView()
     
@@ -36,6 +37,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     }
     
     var recipeObject:Recipe?
+    var newRecipe: Recipe?
     
     var isFav = UserDefaults.standard.bool(forKey: "isFav")
     let realm = try! Realm()
@@ -55,34 +57,19 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         pickerForPhoto.delegate = self
         
         self.configureView()
+        
         print("Realm Address: \(realm.configuration.fileURL!)")
         
     }
    
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let addAlert = UIAlertController(title: "Information Chaged", message: "Do you want to save before go back, you will lose all info changed if not saved", preferredStyle: .alert)
-        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler:{ (action) in
-                                            self.saveData()}))
-        
-        if let recipe = recipeObject{
-            if (recipe.category.first?.title != categoryTextField.text) ||
-                (recipe.ingredients != ingredientsTextField.text) ||
-                (recipe.yield != yieldTextField.text) ||
-                (recipe.preparation != preparationTextField.text) ||
-                (recipe.equipments != equipmentsTextField.text){
-                print("view will disapear")
-                
-                self.present(addAlert, animated: true, completion: nil)
-                
-            }
-        }
+        print("View will disapear1")
+        saveData()
     }
 
-    
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -134,18 +121,25 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     func saveData(){
         if let recipe = recipeObject {
             if categoryTextField.text != recipe.category.first?.title {
+                
+                //Copy all info from previous recipe
+                let recipeCreationDate = recipe.creationDate
                 let recipeTitle = recipe.title!
                 let recipeYield = recipe.yield!
-                let recipeCreationDate = recipe.creationDate
                 let recipeIngred = recipe.ingredients!
                 let recipePrep = recipe.preparation!
                 let recipEquip = recipe.equipments!
                 let recipeFav = recipe.isFavorite
-                let recipeImage = recipe.image
+                let recipeImage = recipe.image!
+                
+                //Delete recipe
                 RecipesManager.shared.deleteRecipe(recipe: recipe)
                 
+                //Get category title to add recipe
                 let newCatTitle = categoryTextField.text
                 let categoryToBeAdded = RecipesManager.shared.getCategoryByTitle(title: newCatTitle!)
+                
+                //Create new Recipe object
                 let newRecipe = Recipe()
                 newRecipe.title = recipeTitle
                 newRecipe.yield = recipeYield
@@ -155,27 +149,22 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
                 newRecipe.equipments = recipEquip
                 newRecipe.image = recipeImage
                 
-                RecipesManager.shared.AddFullRecipeToCategory(category: categoryToBeAdded, recipe: newRecipe)
-
+                //Add recipe to category
+                RecipesManager.shared.AddFullRecipeToNewCategory(category: categoryToBeAdded, recipe: newRecipe)
+                
+                //restore old creation date to this recipe
                 RecipesManager.shared.updateRecipeDate(recipe: newRecipe, date: recipeCreationDate)
-               
-            } else {
+              
+            } else  if yieldTextField.text != recipe.yield || ingredientsTextField.text != recipe.ingredients
+                        || preparationTextField.text != recipe.preparation || equipmentsTextField.text != recipe.equipments {
                 let yield = yieldTextField.text
                 let ingredients = ingredientsTextField.text
                 let preparation = preparationTextField.text
                 let equipment = equipmentsTextField.text
-                let image = "\(recipe.id)"
                 
-                RecipesManager.shared.updateRecipe(recipe: recipe, yield: yield!, ingredients: ingredients!, preparation: preparation!, equipments: equipment!, image: image)
+                RecipesManager.shared.updateRecipe(recipe: recipe, yield: yield!, ingredients: ingredients!, preparation: preparation!, equipments: equipment!)
             }
         }
-    }
-    
-    @IBAction func saveButton(_ sender: Any) {
-        saveData()
-        //Go back when save button is pressed
-        self.navigationController?.popViewController(animated: true)
-        
     }
     
     @IBAction func favButton(_ sender: UIButton) {
@@ -214,19 +203,19 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         dismiss(animated: true)
         let img = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         imageView.image = img
-//        if let recipe = recipeObject {
-//            imageName = "\(recipe.id)"
-//        }
+        if let recipe = recipeObject {
+            RecipesManager.shared.updateImage(recipe: recipe, image: "\(recipe.id)")
+        }
         savePhoto(image: imageView.image!)
     }
  
     //To save image in document Directory
     func savePhoto(image: UIImage){
         let data = image.jpegData(compressionQuality: 0.75) ?? image.pngData()
-        let directory = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask) as [URL]
+        let directory =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask) as [URL]
         do {
            if let recipe = recipeObject {
-            try data!.write(to: directory![0].appendingPathComponent("\(recipe.id).png"))
+            try data!.write(to: directory[0].appendingPathComponent("\(recipe.id).png"))
             }
             
         } catch {

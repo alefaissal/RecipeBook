@@ -58,6 +58,18 @@ class RecipesManager: NSObject {
         }
     }
     
+    func AddFullRecipeToNewCategory(category: Category, recipe: Recipe){
+        let realm = try! Realm()
+//        recipe.creationDate = Date()
+        do {
+            try realm.write {
+                category.recipes.append(recipe)
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
     func addItemtoShoppingList(title: String) {
         let realm = try! Realm()
         let item = ShoppingList()
@@ -151,7 +163,7 @@ class RecipesManager: NSObject {
     
     
     //fixed
-    func updateRecipe(recipe: Recipe, yield:String, ingredients:String, preparation: String, equipments: String, image: String) {
+    func updateRecipe(recipe: Recipe, yield:String, ingredients:String, preparation: String, equipments: String) {
         let realm = try! Realm()
         do {
             try realm.write{
@@ -160,7 +172,6 @@ class RecipesManager: NSObject {
                 recipe.preparation = preparation
                 recipe.equipments = equipments
                 recipe.updateDate = Date()
-                recipe.image = image
             }
         } catch  {
             print(error.localizedDescription)
@@ -199,6 +210,18 @@ class RecipesManager: NSObject {
         do {
             try realm.write{
                 recipe.isFavorite = favorite
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    func updateImage(recipe: Recipe, image: String) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                recipe.image = image
             }
         } catch  {
             print(error.localizedDescription)
