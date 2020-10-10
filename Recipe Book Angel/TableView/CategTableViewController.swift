@@ -18,11 +18,6 @@ class CategTableViewController: UITableViewController {
         
         loadData()
         
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,25 +98,47 @@ class CategTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //To create and use the Edit and DELETE button in each cell of the table
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let addAlert = UIAlertController(title: "Delete Category", message: "If you delete, all data in this category will be lost. \n Including all recipes inside this category", preferredStyle: .alert)
-        
-        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
-            if editingStyle == .delete {
-                let categoryObjectToDelete = self.categoriesArray[indexPath.row]
-                RecipesManager.shared.deleteCategory(category: categoryObjectToDelete)
-                self.categoriesArray.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+        let delete = UIContextualAction(style: .normal, title: "Delete"){(action, swipeButtonView, completetion) in
+           
+            let addAlert = UIAlertController(title: "Delete Category", message: "If you delete, all data in this category will be lost. \n Including all recipes inside this category", preferredStyle: .alert)
+            addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
             
-        } ))
+                let categoryObjectToDelete = self.categoriesArray[indexPath.row]
+            RecipesManager.shared.deleteCategory(category: categoryObjectToDelete)
+            self.categoriesArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            completetion(true)
+            }))
+            
+            self.present(addAlert, animated: true, completion: nil)
+        }
         
-        self.present(addAlert, animated: true, completion: nil)
+        let edit = UIContextualAction(style: .normal, title: "Edit"){(action, swipeButtonView, completetion) in
+
+            let addAlert = UIAlertController(title: "Change Category Title", message: "Type new title to this category", preferredStyle: .alert)
+            addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Category title"
+            }
+            addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler:{ (action) in
+            let categoryObjectToChange = self.categoriesArray[indexPath.row]
+            if let title = addAlert.textFields?.first?.text {
+                RecipesManager.shared.updateCategoryTitle(category: categoryObjectToChange, title: title)
+                self.loadData()
+            }
+            completetion(true)
+            }))
+            
+            self.present(addAlert, animated: true, completion: nil)
+        }
+        delete.backgroundColor = UIColor.red
+        edit.backgroundColor = UIColor.blue
         
+        return UISwipeActionsConfiguration(actions: [delete, edit])
     }
     
-
+    
 }

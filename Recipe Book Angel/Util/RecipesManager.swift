@@ -160,7 +160,30 @@ class RecipesManager: NSObject {
         return recipes 
     }
     
+    func updateCategoryTitle(category: Category, title: String) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                category.title = title
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+    }
     
+    func updateRecipeTitle(recipe: Recipe, title: String) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                recipe.title = title
+                recipe.updateDate = Date()
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+    }
     
     //fixed
     func updateRecipe(recipe: Recipe, yield:String, ingredients:String, preparation: String, equipments: String) {

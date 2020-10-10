@@ -122,21 +122,48 @@ class RecipesTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {        
-        let addAlert = UIAlertController(title: "Delete Recipe", message: "If you delete, all data in this recipe will be lost.", preferredStyle: .alert)
+    //To create and use the Edit and DELETE button in each cell of the table
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
-            if editingStyle == .delete {
+        let delete = UIContextualAction(style: .normal, title: "Delete"){(action, swipeButtonView, completetion) in
+            
+            let addAlert = UIAlertController(title: "Delete Recipe", message: "If you delete, all data in this recipe will be lost.", preferredStyle: .alert)
+            addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
+                
                 let recipeObjectToDelete = self.recipesArray[indexPath.row]
                 RecipesManager.shared.deleteRecipe(recipe: recipeObjectToDelete)
                 self.recipesArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } ))
+            
+            self.present(addAlert, animated: true, completion: nil)
+        }
+        
+        let edit = UIContextualAction(style: .normal, title: "Edit"){(action, swipeButtonView, completetion) in
+
+            let addAlert = UIAlertController(title: "Change Recipe Title", message: "Type new title to this recipe", preferredStyle: .alert)
+            addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Recipe title"
             }
-        } ))
-        self.present(addAlert, animated: true, completion: nil)
+            addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler:{ (action) in
+            let recipeToChange = self.recipesArray[indexPath.row]
+            if let title = addAlert.textFields?.first?.text {
+                RecipesManager.shared.updateRecipeTitle(recipe: recipeToChange, title: title)
+                self.loadData()
+            }
+            completetion(true)
+            }))
+            
+            self.present(addAlert, animated: true, completion: nil)
+        }
+        delete.backgroundColor = UIColor.red
+        edit.backgroundColor = UIColor.blue
+        
+        return UISwipeActionsConfiguration(actions: [delete, edit])
     }
+    
     
     
 }
