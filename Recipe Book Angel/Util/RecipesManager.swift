@@ -70,11 +70,12 @@ class RecipesManager: NSObject {
         }
     }
     
-    func addItemtoShoppingList(title: String) {
+    func addItemtoShoppingList(title: String, position: Int) {
         let realm = try! Realm()
         let item = ShoppingList()
         item.title = title
         item.creationDate = Date()
+        item.position.value = position
         do {
             try realm.write {
                 realm.add(item)
@@ -155,9 +156,16 @@ class RecipesManager: NSObject {
     func getAllShoppingListByChecked(isChecked: Bool) ->[ShoppingList]?{
         let realm = try! Realm()
         let items = realm.objects(ShoppingList.self)
-        let results = items.filter("isChecked = \(isChecked) ")
+        let results = items.filter("isChecked = \(isChecked) ").sorted(byKeyPath: "position", ascending: true)
         let recipes = Array(results)
-        return recipes 
+        return recipes
+        
+        
+//        var highestScore = realm.All<Person>().OrderByDescending(p => p.Score).First();
+//
+//        var sortedPeople = realm.All<Person>()
+//            .OrderBy(p => p.LastName)
+//            .ThenBy(p => p.FirstName);
     }
     
     func updateCategoryTitle(category: Category, title: String) {
@@ -264,6 +272,18 @@ class RecipesManager: NSObject {
         
     }
     
+    func updateShopListPosition(item: ShoppingList, position: Int) {
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                item.position.value = position
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
     
     //fixed
     func getAllFav() -> [Recipe]? {
@@ -307,5 +327,80 @@ class RecipesManager: NSObject {
         }
         return nil
     }
+    
+    func removeShopList(oldList: [ShoppingList]){
+        let realm = try! Realm()
+        do {
+            try realm.write{
+                for item in oldList {
+                    realm.delete(item)
+                }
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func rebuildAllShopList(newList: [ShoppingList], oldList: [ShoppingList]){
+        let realm = try! Realm()
+        for item in newList {
+            let newItem = ShoppingList()
+            newItem.title = item.title
+            newItem.creationDate = item.creationDate
+            do {
+                try realm.write {
+                    realm.add(item)
+                }
+            } catch  {
+                print(error.localizedDescription)
+            }
+        }
+        do {
+            try realm.write{
+                for item in oldList {
+                    realm.delete(item)
+                }
+            }
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func moveShopCheckBottom(items: [ShoppingList]) -> [ShoppingList]{
+        let realm = try! Realm()
+        for item in items {
+            if item.isChecked{
+                let newItem = ShoppingList()
+                newItem.title = item.title
+                newItem.creationDate = item.creationDate
+                do {
+                    try realm.write {
+                        realm.add(item)
+                    }
+                } catch  {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        for item in items {
+            if !item.isChecked{
+                let newItem = ShoppingList()
+                newItem.title = item.title
+                newItem.creationDate = item.creationDate
+                do {
+                    try realm.write {
+                        realm.add(item)
+                    }
+                } catch  {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        let itemsList = realm.objects(ShoppingList.self)
+        return itemsList.map({$0})
+    }
+    
+    
 }
 

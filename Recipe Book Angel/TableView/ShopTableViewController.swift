@@ -16,6 +16,7 @@ class ShopTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         loadData()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,8 +41,15 @@ class ShopTableViewController: UITableViewController {
     }
     
     
-    
     @IBAction func addShopItem(_ sender: Any) {
+        addItemAlert()
+    }
+    
+    @IBAction func editButton(_ sender: Any) {
+        self.tableView.isEditing = !self.tableView.isEditing
+    }
+    
+    func addItemAlert(){
         let addAlert = UIAlertController(title: "Add Item", message: "Enter item to shopping list", preferredStyle: .alert)
         addAlert.addTextField{
             (textField: UITextField) in textField.placeholder = "Item and qty"
@@ -49,16 +57,13 @@ class ShopTableViewController: UITableViewController {
         addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             (action) in if let item = addAlert.textFields?.first?.text {
-                RecipesManager.shared.addItemtoShoppingList(title: item)
+                RecipesManager.shared.addItemtoShoppingList(title: item, position: self.shopArray.count)
                 self.loadData()
             }
         }))
         
         self.present(addAlert, animated: true, completion: nil)
     }
-    
-   
-    
     
     
     
@@ -85,12 +90,16 @@ class ShopTableViewController: UITableViewController {
         cell.setImage(isChecked: item.isChecked)
         cell.itemLabel.text = item.title
         cell.isChecked = item.isChecked
-//        cell.textLabel?.text = item.title
         
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == shopArray.count){
+            addItemAlert()
+            print("touch empty cell")
+        }
+    }
     
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -111,7 +120,20 @@ class ShopTableViewController: UITableViewController {
         
         self.present(addAlert, animated: true, completion: nil)
     }
-
+    
+    //Moving items in the list when edit button is pressed
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let movedObject = self.shopArray[sourceIndexPath.row]
+        
+        shopArray.remove(at: sourceIndexPath.row)
+        shopArray.insert(movedObject, at: destinationIndexPath.row)
+        
+        RecipesManager.shared.updateShopListPosition(item: shopArray[destinationIndexPath.row], position: destinationIndexPath.row)
+        RecipesManager.shared.updateShopListPosition(item: shopArray[sourceIndexPath.row], position: sourceIndexPath.row)
+        
+    }
+    
     
     
     

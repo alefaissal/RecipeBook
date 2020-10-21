@@ -22,6 +22,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     @IBOutlet weak var creationDateTextField: UITextField!
     @IBOutlet weak var addPhotoOutlet: UIButton!
     @IBOutlet weak var favImage: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     //Added for dropdown menu for categories
@@ -58,15 +59,31 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         
         self.configureView()
         
-        print("Realm Address: \(realm.configuration.fileURL!)")
+        //Listen for keyboard events
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+//
+        hideKeyboard()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        print("Realm Address: \(realm.configuration.fileURL!)")
+
     }
-   
+    
+    
+    //Method to remove Observer for keyboard
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("View will disapear1")
         saveData()
     }
 
@@ -230,6 +247,69 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
             return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("\(named).png").path)
         }
         return nil
+    }
+    
+    //Methods to make keyboard push text up when showing
+    func hideKeyboard() {
+//        ingredientsTextField.resignFirstResponder()
+//        preparationTextField.resignFirstResponder()
+//        equipmentsTextField.resignFirstResponder()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+//    @objc func keyboardWillChange(notification: Notification){
+//        print("Keyboard will show: \(notification.name.rawValue)")
+//        var yValue:CGFloat = 0;
+//        if ingredientsTextField.isFirstResponder {
+//            yValue = -7
+//            print("got it 1")
+//        }
+//        if preparationTextField.isFirstResponder {
+//            yValue = -118
+//            print("got it 2")
+//        }
+//        if equipmentsTextField.isFirstResponder {
+//            yValue = -230
+//            print("got it 3")
+//        }
+//        view.frame.origin.y = yValue
+//
+//
+//    }
+//
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+//        view.frame.origin.y = 0
+    }
+    
+    //Func to scroll screen when keyboard shows up
+    @objc func keyboardWillShow(notification:NSNotification) {
+        if ingredientsTextField.isFirstResponder {
+            scrollView.contentOffset = CGPoint(x: 0, y: 30)
+        }
+        if preparationTextField.isFirstResponder {
+            scrollView.contentOffset = CGPoint(x: 0, y: 140)
+        }
+        if equipmentsTextField.isFirstResponder {
+            scrollView.contentOffset = CGPoint(x: 0, y: 250)
+        }
+        
+        
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height - 50
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
     }
     
     

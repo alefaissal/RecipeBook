@@ -51,6 +51,7 @@ class ShoppingList: Object {
     @objc dynamic var title: String? = ""
     @objc dynamic var creationDate = Date()
     @objc dynamic var isChecked: Bool = false
+    var position = RealmOptional<Int>()
     
 }
 
