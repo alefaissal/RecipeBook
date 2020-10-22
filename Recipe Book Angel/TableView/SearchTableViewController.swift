@@ -36,6 +36,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
 
         // Reload the table
         tableView.reloadData()
+        //Table have the height of rows used
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

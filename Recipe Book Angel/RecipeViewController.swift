@@ -59,11 +59,6 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         
         self.configureView()
         
-        //Listen for keyboard events
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-//
         hideKeyboard()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -249,6 +244,13 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         return nil
     }
     
+//    func deleteSavedImage(named: String){
+//        let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let fileURL = URL(fileURLWithPath: "\(named).png", relativeTo: directoryURL)
+//        try! FileManager.default.removeItem(at: fileURL)
+//    }
+    
+    
     //Methods to make keyboard push text up when showing
     func hideKeyboard() {
 //        ingredientsTextField.resignFirstResponder()
@@ -259,29 +261,8 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         
     }
     
-//    @objc func keyboardWillChange(notification: Notification){
-//        print("Keyboard will show: \(notification.name.rawValue)")
-//        var yValue:CGFloat = 0;
-//        if ingredientsTextField.isFirstResponder {
-//            yValue = -7
-//            print("got it 1")
-//        }
-//        if preparationTextField.isFirstResponder {
-//            yValue = -118
-//            print("got it 2")
-//        }
-//        if equipmentsTextField.isFirstResponder {
-//            yValue = -230
-//            print("got it 3")
-//        }
-//        view.frame.origin.y = yValue
-//
-//
-//    }
-//
     @objc func dismissKeyboard(){
         view.endEditing(true)
-//        view.frame.origin.y = 0
     }
     
     //Func to scroll screen when keyboard shows up

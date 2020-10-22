@@ -17,6 +17,12 @@ class ShopTableViewController: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         loadData()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+//        self.addItemWhenTapOutside() add alert when tap anywhere
+        
+        //Table have the height of rows used
+        tableView.tableFooterView = UIView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +55,7 @@ class ShopTableViewController: UITableViewController {
         self.tableView.isEditing = !self.tableView.isEditing
     }
     
-    func addItemAlert(){
+    @objc func addItemAlert(){
         let addAlert = UIAlertController(title: "Add Item", message: "Enter item to shopping list", preferredStyle: .alert)
         addAlert.addTextField{
             (textField: UITextField) in textField.placeholder = "Item and qty"
@@ -95,11 +101,12 @@ class ShopTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == shopArray.count){
-            addItemAlert()
-            print("touch empty cell")
-        }
+        var isChecked = shopArray[indexPath.row].isChecked
+        isChecked = !isChecked
+        RecipesManager.shared.updateShopListCheck(item: shopArray[indexPath.row], checked: isChecked)
+        loadData()
     }
+    
     
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -134,7 +141,10 @@ class ShopTableViewController: UITableViewController {
         
     }
     
-    
-    
-    
+    //add alert when tap anywhere
+//    func addItemWhenTapOutside() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: UIView.self, action: #selector(ShopTableViewController.addItemAlert))
+//        tap.cancelsTouchesInView = true
+//        view.addGestureRecognizer(tap)
+//    }
 }

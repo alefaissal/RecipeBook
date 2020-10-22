@@ -17,6 +17,8 @@ class CategTableViewController: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
         loadData()
+        //Table have the height of rows used
+        tableView.tableFooterView = UIView()
         
     }
     

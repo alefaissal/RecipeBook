@@ -20,6 +20,9 @@ class RecipesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        //Table have the height of rows used
+        tableView.tableFooterView = UIView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,6 +135,7 @@ class RecipesTableViewController: UITableViewController {
             addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
                 
                 let recipeObjectToDelete = self.recipesArray[indexPath.row]
+                self.deleteSavedImage(named: recipeObjectToDelete.image!)
                 RecipesManager.shared.deleteRecipe(recipe: recipeObjectToDelete)
                 self.recipesArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -164,6 +168,12 @@ class RecipesTableViewController: UITableViewController {
         return UISwipeActionsConfiguration(actions: [delete, edit])
     }
     
+    //To delete the associate image from FileSystem to the recipe when deleting the recipe
+    func deleteSavedImage(named: String){
+        let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = URL(fileURLWithPath: "\(named).png", relativeTo: directoryURL)
+        try! FileManager.default.removeItem(at: fileURL)
+    }
     
     
 }
