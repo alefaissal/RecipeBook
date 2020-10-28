@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E14BDD4A2316BB23B8B50AE /* Pods_Recipe_Book_Angel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA83327A252E5D6C24D7EFDE /* Pods_Recipe_Book_Angel.framework */; };
 		AC286F8C251E6FBC007D18EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286F8B251E6FBC007D18EA /* AppDelegate.swift */; };
 		AC286F8E251E6FBC007D18EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286F8D251E6FBC007D18EA /* SceneDelegate.swift */; };
 		AC286F90251E6FBC007D18EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC286F8F251E6FBC007D18EA /* ViewController.swift */; };
@@ -28,21 +29,15 @@
 		AC2B52F92523CB7A008BD535 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B52F82523CB79008BD535 /* RecipeViewController.swift */; };
 		AC8A51662526776E00ED8D1C /* ShopViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A51652526776E00ED8D1C /* ShopViewCell.swift */; };
 		AC8A5173252B7F8C00ED8D1C /* RecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8A5172252B7F8C00ED8D1C /* RecipeViewCell.swift */; };
-		ACF2A764253E4CBB00A95219 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF2A762253E4CBB00A95219 /* Realm.framework */; };
-		ACF2A765253E4CBB00A95219 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACF2A762253E4CBB00A95219 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ACF2A766253E4CBB00A95219 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF2A763253E4CBB00A95219 /* RealmSwift.framework */; };
-		ACF2A767253E4CBB00A95219 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACF2A763253E4CBB00A95219 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AC76E301252F7649003CBEB1 /* Embed Frameworks */ = {
+		AC2DB064254A0A2500101B27 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ACF2A765253E4CBB00A95219 /* Realm.framework in Embed Frameworks */,
-				ACF2A767253E4CBB00A95219 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		506F66C37C2244E20C7EC93E /* Pods-Recipe Book Angel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe Book Angel.debug.xcconfig"; path = "Target Support Files/Pods-Recipe Book Angel/Pods-Recipe Book Angel.debug.xcconfig"; sourceTree = "<group>"; };
 		AC286F88251E6FBC007D18EA /* Recipe Book Angel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe Book Angel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC286F8B251E6FBC007D18EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC286F8D251E6FBC007D18EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,8 +69,8 @@
 		AC2B52F82523CB79008BD535 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		AC8A51652526776E00ED8D1C /* ShopViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewCell.swift; sourceTree = "<group>"; };
 		AC8A5172252B7F8C00ED8D1C /* RecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewCell.swift; sourceTree = "<group>"; };
-		ACF2A762253E4CBB00A95219 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../Frameworks/Realm/Realm 5.5.0/Realm.framework"; sourceTree = "<group>"; };
-		ACF2A763253E4CBB00A95219 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Frameworks/Realm/Realm 5.5.0/RealmSwift.framework"; sourceTree = "<group>"; };
+		B000EE7EEE6609089DD5FCF4 /* Pods-Recipe Book Angel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recipe Book Angel.release.xcconfig"; path = "Target Support Files/Pods-Recipe Book Angel/Pods-Recipe Book Angel.release.xcconfig"; sourceTree = "<group>"; };
+		DA83327A252E5D6C24D7EFDE /* Pods_Recipe_Book_Angel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recipe_Book_Angel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,20 +78,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACF2A764253E4CBB00A95219 /* Realm.framework in Frameworks */,
-				ACF2A766253E4CBB00A95219 /* RealmSwift.framework in Frameworks */,
+				3E14BDD4A2316BB23B8B50AE /* Pods_Recipe_Book_Angel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		587B1533D5587E5290F73C9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA83327A252E5D6C24D7EFDE /* Pods_Recipe_Book_Angel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AC286F7F251E6FBC007D18EA = {
 			isa = PBXGroup;
 			children = (
 				AC286F8A251E6FBC007D18EA /* Recipe Book Angel */,
 				AC286F89251E6FBC007D18EA /* Products */,
-				ACF2A75D253E459000A95219 /* Frameworks */,
+				E867B30908BDF85320C1E04C /* Pods */,
+				587B1533D5587E5290F73C9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,13 +172,14 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		ACF2A75D253E459000A95219 /* Frameworks */ = {
+		E867B30908BDF85320C1E04C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ACF2A762253E4CBB00A95219 /* Realm.framework */,
-				ACF2A763253E4CBB00A95219 /* RealmSwift.framework */,
+				506F66C37C2244E20C7EC93E /* Pods-Recipe Book Angel.debug.xcconfig */,
+				B000EE7EEE6609089DD5FCF4 /* Pods-Recipe Book Angel.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC286F9C251E6FBD007D18EA /* Build configuration list for PBXNativeTarget "Recipe Book Angel" */;
 			buildPhases = (
+				0D10CCA5C2B54438FF478202 /* [CP] Check Pods Manifest.lock */,
 				AC286F84251E6FBC007D18EA /* Sources */,
 				AC286F85251E6FBC007D18EA /* Frameworks */,
 				AC286F86251E6FBC007D18EA /* Resources */,
-				AC76E301252F7649003CBEB1 /* Embed Frameworks */,
+				AC2DB064254A0A2500101B27 /* Embed Frameworks */,
+				99A53C9E5F9829A8837DF7F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -242,6 +249,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D10CCA5C2B54438FF478202 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Recipe Book Angel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99A53C9E5F9829A8837DF7F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Recipe Book Angel/Pods-Recipe Book Angel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Recipe Book Angel/Pods-Recipe Book Angel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Recipe Book Angel/Pods-Recipe Book Angel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AC286F84251E6FBC007D18EA /* Sources */ = {
@@ -343,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -400,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -413,6 +462,7 @@
 		};
 		AC286F9D251E6FBD007D18EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 506F66C37C2244E20C7EC93E /* Pods-Recipe Book Angel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -424,7 +474,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Recipe Book Angel/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -438,6 +488,7 @@
 		};
 		AC286F9E251E6FBD007D18EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B000EE7EEE6609089DD5FCF4 /* Pods-Recipe Book Angel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -449,7 +500,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Recipe Book Angel/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

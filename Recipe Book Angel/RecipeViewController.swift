@@ -28,6 +28,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     //Added for dropdown menu for categories
     var pickerViewForCat = UIPickerView()
     
+    // MARK: - Variables
     //Added for image picker
     var pickerForPhoto:UIImagePickerController!
     
