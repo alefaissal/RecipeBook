@@ -269,13 +269,13 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     //Func to scroll screen when keyboard shows up
     @objc func keyboardWillShow(notification:NSNotification) {
         if ingredientsTextField.isFirstResponder {
-            scrollView.contentOffset = CGPoint(x: 0, y: 30)
+            scrollView.contentOffset = CGPoint(x: 0, y: 230)
         }
         if preparationTextField.isFirstResponder {
-            scrollView.contentOffset = CGPoint(x: 0, y: 140)
+            scrollView.contentOffset = CGPoint(x: 0, y: 580)
         }
         if equipmentsTextField.isFirstResponder {
-            scrollView.contentOffset = CGPoint(x: 0, y: 250)
+            scrollView.contentOffset = CGPoint(x: 0, y: 700)
         }
         
         
