@@ -16,6 +16,20 @@ class CategTableViewController: UITableViewController {
 
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
+        
+//        let width = UIScreen.main.bounds.size.width
+//        let height = UIScreen.main.bounds.size.height
+//        let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 100, width: width, height: height))
+//        imageViewBackground.image = UIImage(named: "backGround")
+//               
+//        
+//        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
+
+        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "bellaBackGround"))
+        
+        
+        
         loadData()
         //Table have the height of rows used
         tableView.tableFooterView = UIView()
@@ -26,6 +40,8 @@ class CategTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         loadData()
     }
+    
+    
     
     func loadData() {
         if let categories = RecipesManager.shared.getAllCategories() {
@@ -54,7 +70,6 @@ class CategTableViewController: UITableViewController {
         
     }
     
-    
 
     // MARK: - Table view data source
 
@@ -73,10 +88,11 @@ class CategTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catCell", for: indexPath)
 
         let category = categoriesArray[indexPath.row]
-        
         cell.textLabel?.text = category.title
         cell.detailTextLabel?.text = "Recipes: \(category.recipes.count)"
-        
+
+        //To see the background behind the cell
+        cell.backgroundColor = .clear
 
         return cell
     }

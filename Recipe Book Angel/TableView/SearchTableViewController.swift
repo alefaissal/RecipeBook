@@ -22,7 +22,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "bellaBackGround"))
         resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
@@ -85,6 +85,9 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         cell.searchSubTitleLabel.text = "Yield: \(recipe!.yield!), updated: \(updated)"
         cell.searchImageView.image = recipe?.image != nil && recipe!.image != "" ? RecipesManager.shared.getSavedImage(named: "\(recipe!.image ?? "")"): UIImage(systemName: "photo")
 
+        //To see the background behind the cell
+        cell.backgroundColor = .clear
+        
         return cell
     }
     

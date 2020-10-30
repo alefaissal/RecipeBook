@@ -22,6 +22,7 @@ class RecipesTableViewController: UITableViewController {
         self.configureView()
         //Table have the height of rows used
         tableView.tableFooterView = UIView()
+        tableView.backgroundView = UIImageView(image: UIImage(named: "bellaBackGround"))
         
     }
     
@@ -93,7 +94,9 @@ class RecipesTableViewController: UITableViewController {
         cell.recipeSubTitleLabel.text = "Yield: \(recipeObject.yield!), updated: \(updated)"
         cell.recipeImageView.image = recipeObject.image != nil && recipeObject.image != "" ? RecipesManager.shared.getSavedImage(named: "\(recipeObject.image ?? "")"): UIImage(systemName: "photo")
         
-
+        //To see the background behind the cell
+        cell.backgroundColor = .clear
+        
         return cell
     }
 

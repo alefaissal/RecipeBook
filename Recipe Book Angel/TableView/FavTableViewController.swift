@@ -18,6 +18,7 @@ class FavTableViewController: UITableViewController {
         loadData()
         //Table have the height of rows used
         tableView.tableFooterView = UIView()
+        tableView.backgroundView = UIImageView(image: UIImage(named: "bellaBackGround"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +58,9 @@ class FavTableViewController: UITableViewController {
         cell.favoritesTitleLabel.text = recipe!.title
         cell.favoritesSubtitleLabel.text = "Yield: \(recipe!.yield ?? ""), updated: \(updated)"
         cell.favoritesImageView.image = recipe?.image != nil && recipe!.image != "" ? RecipesManager.shared.getSavedImage(named: "\(recipe!.image ?? "")"): UIImage(systemName: "photo")
+        
+        //To see the background behind the cell
+        cell.backgroundColor = .clear
         
         return cell
     }

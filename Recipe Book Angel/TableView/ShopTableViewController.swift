@@ -16,6 +16,7 @@ class ShopTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         loadData()
+        tableView.backgroundView = UIImageView(image: UIImage(named: "bellaBackGround"))
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
 //        self.addItemWhenTapOutside() add alert when tap anywhere
@@ -96,6 +97,9 @@ class ShopTableViewController: UITableViewController {
         cell.setImage(isChecked: item.isChecked)
         cell.itemLabel.text = item.title
         cell.isChecked = item.isChecked
+        
+        //To see the background behind the cell
+        cell.backgroundColor = .clear
         
         return cell
     }
