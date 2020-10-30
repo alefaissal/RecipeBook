@@ -48,6 +48,16 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Add those to enlarge image when tapped on it, together with methods in this code
+        // create tap gesture recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        // add it to the image view;
+        imageView.addGestureRecognizer(tapGesture)
+        // make sure imageView can be interacted with by user
+        imageView.isUserInteractionEnabled = true
+        
+        
         // created a picker for this text field
         pickerViewForCat.delegate = self
         pickerViewForCat.dataSource = self
@@ -294,6 +304,25 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
         scrollView.contentInset = contentInset
     }
     
+    //Methods used to enlarge image
+    @objc func imageTapped(sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .lightGray
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
     
     
 }
