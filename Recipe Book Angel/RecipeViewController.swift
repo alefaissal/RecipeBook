@@ -161,7 +161,7 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
                 //Get category title to add recipe
                 let newCatTitle = categoryTextField.text
                 let categoryToBeAdded = RecipesManager.shared.getCategoryByTitle(title: newCatTitle!)
-                
+                print("got it until here1")
                 //Create new Recipe object
                 let newRecipe = Recipe()
                 newRecipe.title = recipeTitle
@@ -171,13 +171,15 @@ class RecipeViewController: UIViewController,UIImagePickerControllerDelegate, UI
                 newRecipe.isFavorite = recipeFav
                 newRecipe.equipments = recipEquip
                 newRecipe.image = recipeImage
+                newRecipe.creationDate = recipeCreationDate
+                newRecipe.id = recipe.incrementID()
                 
                 //Add recipe to category
                 RecipesManager.shared.AddFullRecipeToNewCategory(category: categoryToBeAdded, recipe: newRecipe)
                 
                 //restore old creation date to this recipe
-                RecipesManager.shared.updateRecipeDate(recipe: newRecipe, date: recipeCreationDate)
-              
+                //RecipesManager.shared.updateRecipeDate(recipe: newRecipe, date: recipeCreationDate)
+                
             } else  if yieldTextField.text != recipe.yield || ingredientsTextField.text != recipe.ingredients
                         || preparationTextField.text != recipe.preparation || equipmentsTextField.text != recipe.equipments {
                 let yield = yieldTextField.text

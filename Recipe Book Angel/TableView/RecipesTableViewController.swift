@@ -51,7 +51,7 @@ class RecipesTableViewController: UITableViewController {
     @IBAction func addRecipe(_ sender: Any) {
         
         let addAlert = UIAlertController(title: "Add Recipe", message: "Enter the title of your new recipe", preferredStyle: .alert)
-        addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Recipe title"
+        addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Recipe title"; textField.autocapitalizationType = .sentences 
         }
         addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         addAlert.addAction(UIAlertAction(title: "Create", style: .default, handler:{ (action) in
@@ -138,7 +138,9 @@ class RecipesTableViewController: UITableViewController {
             addAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler:{ (action) in
                 
                 let recipeObjectToDelete = self.recipesArray[indexPath.row]
-                self.deleteSavedImage(named: recipeObjectToDelete.image!)
+                if(recipeObjectToDelete.image!.count>3){
+                    self.deleteSavedImage(named: recipeObjectToDelete.image!)
+                }
                 RecipesManager.shared.deleteRecipe(recipe: recipeObjectToDelete)
                 self.recipesArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -151,7 +153,7 @@ class RecipesTableViewController: UITableViewController {
         let edit = UIContextualAction(style: .normal, title: "Edit"){(action, swipeButtonView, completetion) in
 
             let addAlert = UIAlertController(title: "Change Recipe Title", message: "Type new title to this recipe", preferredStyle: .alert)
-            addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Recipe title"
+            addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Recipe title"; textField.autocapitalizationType = .sentences 
             }
             addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler:{ (action) in

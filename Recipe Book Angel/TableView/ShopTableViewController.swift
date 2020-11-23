@@ -59,7 +59,7 @@ class ShopTableViewController: UITableViewController {
     @objc func addItemAlert(){
         let addAlert = UIAlertController(title: "Add Item", message: "Enter item to shopping list", preferredStyle: .alert)
         addAlert.addTextField{
-            (textField: UITextField) in textField.placeholder = "Item and qty"
+            (textField: UITextField) in textField.placeholder = "Item and qty"; textField.autocapitalizationType = .sentences 
         }
         addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: {

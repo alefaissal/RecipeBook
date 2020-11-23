@@ -55,7 +55,7 @@ class CategTableViewController: UITableViewController {
     
     @IBAction func addCategory(_ sender: Any) {
         let addAlert = UIAlertController(title: "Add Category", message: "Enter the title of your new category", preferredStyle: .alert)
-        addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Category title"
+        addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Category title"; textField.autocapitalizationType = .sentences 
         }
         addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         addAlert.addAction(UIAlertAction(title: "Create", style: .default, handler:{ (action) in
@@ -138,7 +138,7 @@ class CategTableViewController: UITableViewController {
         let edit = UIContextualAction(style: .normal, title: "Edit"){(action, swipeButtonView, completetion) in
 
             let addAlert = UIAlertController(title: "Change Category Title", message: "Type new title to this category", preferredStyle: .alert)
-            addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Category title"
+            addAlert.addTextField {(textField:UITextField) in textField.placeholder = "Category title"; textField.autocapitalizationType = .sentences 
             }
             addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler:{ (action) in

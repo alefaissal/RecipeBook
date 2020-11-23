@@ -48,7 +48,11 @@ class RecipesManager: NSObject {
     
     func AddFullRecipeToCategory(category: Category, recipe: Recipe){
         let realm = try! Realm()
-        recipe.creationDate = Date()
+        
+        //Add this where this is used, unless you need to reuse a differente date
+        //recipe.creationDate = Date()
+        //recipe.id = recipe.incrementID()
+
         do {
             try realm.write {
                 category.recipes.append(recipe)
